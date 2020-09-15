@@ -1,0 +1,247 @@
+definitions:
+  user:
+    type: object
+    required:
+      - username
+      - fullname
+      - password
+    properties:
+      created_date:
+        type: string
+        format: password
+      dob:
+        type: string
+        format: date
+        x-nullable: true
+      address:
+        type: string
+        x-nullable: true
+      phonenumber:
+        type: string
+        x-nullable: true
+      email:
+        type: string
+        x-nullable: true
+      avatar_url:
+        type: string
+        x-nullable: true
+  user_update:
+    type: object
+    required:
+      - fullname
+    properties:
+      fullname:
+        type: string
+      dob:
+        type: string
+        format: date
+        x-nullable: true
+      address:
+        type: string
+        x-nullable: true
+      phonenumber:
+        type: string
+        x-nullable: true
+      email:
+        type: string
+        x-nullable: true
+      avatar_url:
+        type: string
+        x-nullable: true
+
+paths:
+  /users:
+    get:
+      operationId: controllers.users.users_rest.api_get_all_user
+      summary: get all user
+      description: get all user
+      tags:
+        - user
+      parameters:
+        - name: page_number
+          in: query
+          type: integer
+        - name: page_size
+          in: query
+          type: integer
+      responses:
+        200:
+          description: OK
+    post:
+      operationId: controllers.users.users_rest.api_post_user
+      summary: create new user
+      description: create new user
+      consumes:
+        - multipart/form-data
+      tags:
+        - user
+      parameters:
+        - name: address
+          type: string
+          in: formData
+        - name: email
+          type: string
+          format: email
+          in: formData
+        - name: full_name
+          type: string
+          in: formData
+        - name: image_path
+          type: file
+          in: formData
+        - name: mobile
+          type: string
+          in: formData
+        - name: password
+          type: string
+          in: formData
+          required: true
+#        - name: status
+#          type: integer
+#          in: formData
+        - name: tel
+          type: string
+          in: formData
+#        - name: user_id
+#          type: string
+#          in: formData
+        - name: user_name
+          type: string
+          in: formData
+          required: true
+      responses:
+        200:
+          description: OK
+
+  /user/{user_id}:
+    get:
+      operationId: controllers.users.users_rest.get_user_by_id
+      summary: Get an user by id
+      tags:
+        - user
+      parameters:
+        - name: user_id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+    delete:
+      operationId: controllers.users.users_rest.api_delete_user
+      summary: delete user
+      tags:
+        - user
+      parameters:
+        - name: user_id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+    put:
+      operationId: controllers.users.users_rest.api_put_user
+      summary: update user
+      description: update user
+      consumes:
+        - multipart/form-data
+      tags:
+        - user
+      parameters:
+        - name: user_id
+          in: path
+          type: integer
+          required: true
+        - name: address
+          type: string
+          in: formData
+        - name: email
+          type: string
+          format: email
+          in: formData
+        - name: full_name
+          type: string
+          in: formData
+        - name: image_path
+          type: file
+          in: formData
+        - name: mobile
+          type: string
+          in: formData
+        - name: tel
+          type: string
+          in: formData
+        - name: user_name
+          type: string
+          in: formData
+      responses:
+        200:
+          description: OK
+
+#  /user/profile:
+#    get:
+#      operationId: controllers.users.users_profile_rest.api_get_user_profile
+#      summary: Get user's profile
+#      tags:
+#        - user
+#      parameters:
+#        - name: user_id
+#          in: query
+#          type: integer
+#          description: optional => default - current user_id
+#      responses:
+#        200:
+#          description: OK
+
+#  /user/reset_password:
+#    put:
+#      operationId: controllers.users.users_rest.api_put_user_reset_password
+#      summary: reset password
+#      tags:
+#        - user
+#        - authenticate
+#      parameters:
+#        - name: payload
+#          in: body
+#          schema:
+#            type: object
+#            required:
+#              - user_id
+#            properties:
+#              user_id:
+#                type: integer
+#              new_password:
+#                type: string
+#                description: default - string
+#      responses:
+#        200:
+#          description: OK
+
+#  /user/change_password:
+#    put:
+#      operationId: controllers.users.users_rest.change_password
+#      summary: Change an user's password
+#      description: |
+#        - TH1 - user_id == null => change password of current user.
+#        - TH2 - user_id != null => requried role=admin
+#      tags:
+#        - user
+#      parameters:
+#        - name: user_id
+#          in: query
+#          type: integer
+#        - name: password_data
+#          in: body
+#          schema:
+#            type: object
+#            required:
+#              - new_password
+#            properties:
+#              old_password:
+#                type: string
+#              new_password:
+#                type: string
+#      responses:
+#        200:
+#          description: Success
