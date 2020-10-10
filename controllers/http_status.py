@@ -1,4 +1,3 @@
-
 def is_informational(code):
     return 100 <= code <= 199
 
@@ -13,7 +12,6 @@ def is_redirect(code):
 
 def is_client_error(code):
     return 400 <= code <= 499
-
 
 
 def is_server_error(code):
