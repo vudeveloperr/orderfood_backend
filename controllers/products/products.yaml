@@ -1,0 +1,27 @@
+definitions:
+  product:
+    type: object
+    required:
+      - username
+      - fullname
+      - password
+    properties:
+      created_date:
+        type: string
+        format: password
+      dob:
+        type: string
+        format: date
+        x-nullable: true
+      address:
+        type: string
+        x-nullable: true
+      phonenumber:
+        type: string
+        x-nullable: true
+      email:
+        type: string
+        x-nullable: true
+      avatar_url:
+        type: string
+        x-nullable: true
