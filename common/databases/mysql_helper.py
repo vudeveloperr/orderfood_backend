@@ -23,7 +23,7 @@ def execute_select_first_value(select_query: str):
         if rows:
             result = rows[0][0]
         return result
-    except (Exception, mysql.Error) as error:
+    except (Exception) as error:
         message = f"execute_select_first_value error {error}"
         connection.rollback()
         print(select_query)
@@ -50,7 +50,7 @@ def execute_count_query(count_query) -> int:
         connection.close()
         print('COUNT QUERY', rows[0][0])
         count = rows[0][0]
-    except (Exception, mysql.Error) as error:
+    except (Exception) as error:
         print("execute_count_query error")
         connection.rollback()
         cursor.close()
@@ -84,7 +84,7 @@ def execute_select_query(select_query: str) -> []:
                 data[cols_description[index]] = value
             result.append(data)
 
-    except(Exception, mysql.Error) as error:
+    except(Exception) as error:
         print("execute_select_query error", error)
         connection.rollback()
         cursor.close()
@@ -107,7 +107,7 @@ def execute_none_query(query):
         connection.commit()
         connection.close()
         result['data'] = True
-    except (Exception, mysql.Error) as error:
+    except (Exception) as error:
         print("execute_none_query error", error)
         print('\t SQL: ', query)
         connection.rollback()

@@ -31,7 +31,7 @@ def api_post_user(
         image_path: str = None):
     user_dict = {
         "user_name": user_name,
-        "full_name": full_name,
+        "full_name": full_name, 
         "image_url": image_url,
         "address": address,
         "mobile": mobile,
@@ -58,3 +58,5 @@ def api_put_user(user_id: int):
 
 def api_delete_user(user_id: int):
     return 'hello'
+
+# def create_token(user_name:str, password:str)

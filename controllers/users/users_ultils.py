@@ -31,7 +31,9 @@ def create_new_user(user) -> dict:
     :param user:
     :return:
     """
+
     new_user = User(**user)
+
     print(new_user)
     db.session.add(new_user)
     db.session.commit()

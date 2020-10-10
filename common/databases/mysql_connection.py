@@ -5,7 +5,7 @@ import mysql.connector
 MYSQL_HOST = 'localhost'
 MYSQL_NAME = 'orderfood'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'Nguyenvanvu17150217'
+MYSQL_PASSWORD = 'laduc123'
 
 # mysql_connection_string = mysql.connector.connect(host=MYSQL_HOST, user=MYSQL_USER, passwd=MYSQL_PASSWORD,
 # database=MYSQL_NAME, auth_plugin='mysql_native_password')
