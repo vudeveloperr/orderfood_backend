@@ -1,25 +1,23 @@
 
-from werkzeug.wrappers import Request, Response, ResponseStream
-
-class middleware():
-    '''
-    Simple WSGI middleware
-    '''
-
-    def __init__(self, app):
-        self.app = app
-
-    def __call__(self, environ, start_response):
-        request = Request(environ)
-        let auth = request.headers.Authorization
-        let token = auth.split(" ")
-       
-        if token[0] != "Bearer":
-            res = Response(u'Authorization failed', mimetype= 'text/plain', status=401)
-        if
-        # these are hardcoded for demonstration
-        # verify the username and password from some database or env config variable
+from flask import request, Response , jsonify, g
+from verify import  verify
+from sign import sign
+from functools import wraps
+def customer(f):
+   @wraps(f)
+   def decorator(*args, **kwargs):
         
+        try:
+            # print(sign())
+            auth = request.headers['Authorization']
+            token = auth.split(" ")
+            # print(token[0])
+            if(token[0] != "Bearer"):
+                return jsonify({'message': 'a valid token is missing', "code":403})
+            data = verify(token[1])
+            g.data = data
+        except:
+            return jsonify({'message': 'a valid token is missing', "code":403})
 
-        res = Response(u'Authorization failed', mimetype= 'text/plain', status=401)
-        return res(environ, start_response)
+        return f(*args, **kwargs)
+   return decorator

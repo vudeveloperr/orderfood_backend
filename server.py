@@ -1,13 +1,13 @@
 import config
 from flask import redirect
 from flask_cors import CORS
+from middleware import middleware
 
 app = config.connex_app
 
 # combine
 app.add_api(config.swagger_file) # ?
 CORS(app.app, resources={r"/api/*": {"origins": "*"}})  # config cors
-
 
 @app.route('/')
 def home():

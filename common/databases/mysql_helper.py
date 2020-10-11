@@ -117,4 +117,4 @@ def execute_none_query(query):
 
 
 # execute_none_query("INSERT INTO User( user_name, full_name, image_url, address, mobile, email, created_date, password, image_path,status)VALUES ( 'BUINHULAC123', 'BUI NHU LAC', 'ABC', 'ABCSD', '0987654321', 'SONNAM@GMAIL.COM', '2018-01-09', 'ABC123','ASDFG',1);")
-print(execute_select_first_value("select count(*) from USER"))
+# print(execute_select_first_value("select count(*) from USER"))
