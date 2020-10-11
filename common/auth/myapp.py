@@ -3,7 +3,7 @@ from flask import Flask, request, g, jsonify
 from customer import customer
 from sign import sign
 app = Flask('DemoApp')
-
+import ast
 # calling our middleware
 
 
@@ -13,9 +13,13 @@ def hello():
     return g.data
 
 @app.route('/sign-in', methods=['POST'])
-def sign_up():
-    username = request.form['username']
-    password = request.form['password']
+def sign_in():
+    data = request.data
+    dict_str = data.decode("UTF-8")
+    mydata = ast.literal_eval(dict_str)
+    print(mydata)
+    username = mydata['username']
+    password = mydata['password']
     username1 = "meoyeu123"
     password1 = "meoyeu123"
     if(username == username1 and password == password1):
