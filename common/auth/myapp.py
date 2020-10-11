@@ -29,4 +29,6 @@ def sign_in():
     else: 
         return jsonify({"code":1, "message":"Sai tai khoan hoac mat khau"})
 if __name__ == "__main__":
-    app.run('127.0.0.1', '5000', debug=True)
+    cors = CORS(app)
+    app.config['CORS_HEADERS'] = 'Content-Type'
+    app.run('0.0.0.0', '5000', debug=True)
