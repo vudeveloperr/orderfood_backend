@@ -2,10 +2,11 @@ from flask import Flask, request, g, jsonify
 # from customer import middleware
 from customer import customer
 from sign import sign
+from flask_cors import CORS
 app = Flask('DemoApp')
 import ast
 # calling our middleware
-
+CORS(app, resources={r"/api/*": {"origins": "*"}})  # config cors
 
 @app.route('/', methods=['GET', 'POST'])
 @customer
