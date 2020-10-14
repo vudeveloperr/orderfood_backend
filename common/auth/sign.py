@@ -3,7 +3,7 @@ import time
 import simplejson as json
 from datetime import datetime, timedelta, timezone
 def sign(payload=None):
-    dt = datetime.now() + timedelta(hours=2)   
+    dt = datetime.now() + timedelta(seconds=60)   
     payload = {
         "userId":1,
         "name":"admin",
